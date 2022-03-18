@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,12 +53,16 @@ public class MainActivity extends AppCompatActivity {
         if (WorkWithDate.checkNeedUpdate(sharedPreferences)) {
             new Thread(() -> {
                 loadJSONFromURL(JSON_URL);
+
                 while (true) {
                     if (!requestStatus.equals(RequestStatus.REQUESTED)) break;
                 }
+
                 if (requestStatus.equals(RequestStatus.ERROR)) {
                     loadValuteFromJSON(sharedPreferences.getString("response", ""));
-                } else WorkWithDate.saveDate(editor);
+                } else {
+                    WorkWithDate.saveDate(editor);
+                }
             }).start();
         } else {
             loadValuteFromJSON(sharedPreferences.getString("response", ""));
@@ -76,7 +81,11 @@ public class MainActivity extends AppCompatActivity {
                 },
                 error -> {
                     requestStatus = RequestStatus.ERROR;
-                    runOnUiThread(() -> Toast.makeText(this, "Ошибка подключения", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(
+                            this,
+                            "Ошибка подключения",
+                            Toast.LENGTH_SHORT).show()
+                    );
                 }
         );
         requestQueue.add(stringRequest);
@@ -107,7 +116,11 @@ public class MainActivity extends AppCompatActivity {
             requestStatus = RequestStatus.ACCEPTED;
         } catch (JSONException e) {
             requestStatus = RequestStatus.ERROR;
-            runOnUiThread(() -> Toast.makeText(this, "Ошибка загрузки", Toast.LENGTH_SHORT).show());
+            runOnUiThread(() -> Toast.makeText(
+                    this,
+                    "Ошибка загрузки",
+                    Toast.LENGTH_SHORT).show()
+            );
         }
     }
 
@@ -116,14 +129,16 @@ public class MainActivity extends AppCompatActivity {
         TextInputEditText numberRubles = findViewById(R.id.textInputEditRus);
         if (numberRubles.length() != 0 && map.size() != 0) {
             ListViewAdapter arr = (ListViewAdapter) listView.getAdapter();
-            String[] mapSplit = map.get(arr.getSelectedPosition()).split(", ");
-            BigDecimal rubles = new BigDecimal((numberRubles.getText()).toString());
+            String[] mapSplit = Objects.requireNonNull(map.get(arr.getSelectedPosition())).split(", ");
+            BigDecimal rubles = new BigDecimal((Objects.requireNonNull(numberRubles.getText())).toString());
             BigDecimal value = new BigDecimal(mapSplit[0]);
             BigDecimal nominal = new BigDecimal(mapSplit[1]);
             result.setText(String.valueOf(
                     rubles.multiply(nominal).divide(value, 4, 4))
             );
-        } else Toast.makeText(this, "Ошибка конвертации", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Ошибка конвертации", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void onButtonUpdateClick(View view) {

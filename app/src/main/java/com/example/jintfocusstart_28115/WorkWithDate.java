@@ -37,7 +37,10 @@ public class WorkWithDate {
                 sharedPreferences.getInt("month", 7),
                 sharedPreferences.getInt("day", 30),
                 sharedPreferences.getInt("hour", 11),
-                0, 0, 0, ZoneId.of("UTC")
+                0,
+                0,
+                0,
+                ZoneId.of("UTC")
         );
 
         return today.isAfter(dayUpdate);
