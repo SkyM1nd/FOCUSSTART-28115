@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:focusable="false">
+
+    <RadioButton
+        android:id="@+id/textViewNameValute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:maxLines="4"
+        android:text="name_valute"
+        android:textSize="20sp"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="3sp"
+        app:autoSizeTextType="uniform" />
+
+</LinearLayout>

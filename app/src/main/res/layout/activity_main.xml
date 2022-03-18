@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:focusable="false"
+    tools:context=".MainActivity">
+
+    <ListView
+        android:id="@+id/listViewValute"
+        android:layout_width="wrap_content"
+        android:layout_height="359dp"
+        android:layout_above="@+id/buttonUpdate"
+        android:layout_below="@+id/textInputLayoutOth"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="24dp"
+        android:choiceMode="singleChoice"
+        android:focusable="false" />
+
+    <Button
+        android:id="@+id/buttonСonvert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputLayoutRus"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="111dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="100dp"
+        android:focusable="false"
+        android:maxLines="1"
+        android:onClick="onButtonConversionClick"
+        android:text="Конвертировать"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform" />
+
+    <Button
+        android:id="@+id/buttonUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp"
+        android:focusable="false"
+        android:maxLines="1"
+        android:onClick="onButtonUpdateClick"
+        android:text="Обновить"
+        app:autoSizeMaxTextSize="100sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutRus"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:focusable="false"
+        app:boxStrokeColor="@color/purple_500">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditRus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="auto"
+            android:hint="Российский рубль"
+            android:inputType="number"
+            android:singleLine="true"
+            android:imeOptions="actionDone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutOth"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonСonvert"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:clickable="false"
+        android:enabled="true"
+        android:focusable="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditOth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:enabled="true"
+            android:focusable="false"
+            android:hint="Выбранная валюта"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</RelativeLayout>
