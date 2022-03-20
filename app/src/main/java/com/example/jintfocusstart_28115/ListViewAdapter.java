@@ -13,6 +13,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +41,10 @@ public class ListViewAdapter extends ArrayAdapter<JSONObject> {
 
         RadioButton nameValute = listViewItem.findViewById(R.id.textViewNameValute);
         try {
+            BigDecimal value = new BigDecimal(usersList.get(position).getString("Value"));
+            BigDecimal nominal = new BigDecimal(usersList.get(position).getString("Nominal"));
             String valueString = usersList.get(position).getString("Name") +
-                    ": " + usersList.get(position).getString("Value");
+                    ": " + value.divide(nominal, 4, 4);
             nameValute.setText(valueString);
             nameValute.setChecked(position == selectedPosition);
             nameValute.setTag(position);
